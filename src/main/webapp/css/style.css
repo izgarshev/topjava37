@@ -1,0 +1,45 @@
+table {
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 2px solid black;
+    padding: 8px;
+}
+
+.normal {
+    color: green;
+}
+
+.excess {
+    color: red;
+}
+
+.meal-form {
+    display: grid;
+    /* 1-я колонка: по контенту, 2-я: всё остальное */
+    grid-template-columns: max-content 1fr;
+    gap: 10px; /* Отступы между колонками и строками */
+    max-width: 400px;
+    align-items: center;
+}
+
+/* Чтобы кнопки занимали обе колонки или только вторую */
+.buttons {
+    grid-column: 2; /* Сдвигаем кнопки во вторую колонку, под инпуты */
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+label {
+    font-family: sans-serif;
+    padding-right: 15px;
+}
+
+input {
+    padding: 4px;
+    width: 100%; /* Чтобы инпут заполнял свою ячейку */
+    box-sizing: border-box;
+}
