@@ -1,5 +1,7 @@
 package ru.javawebinar.topjava.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.util.CollectionUtils;
 
@@ -53,6 +55,11 @@ public class User extends AbstractNamedEntity {
     @Column(name = "calories_per_day", nullable = false, columnDefinition = "int default 2000")
     @Range(min = 10, max = 10000)
     private int caloriesPerDay = DEFAULT_CALORIES_PER_DAY;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OrderBy("dateTime desc")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private List<Meal> meals;
 
     public User() {
     }
@@ -121,6 +128,10 @@ public class User extends AbstractNamedEntity {
 
     public String getPassword() {
         return password;
+    }
+
+    public List<Meal> getMeals() {
+        return meals;
     }
 
     @Override
